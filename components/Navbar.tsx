@@ -30,7 +30,7 @@ type SubItem = {
   label: string;
   path: string;
   description: string;
-  image: StaticImageData; // Changed from string to StaticImageData
+  image: StaticImageData;
 };
 
 type NavItem =
@@ -188,16 +188,44 @@ const Navbar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Initialize client-side
+  useEffect(() => {
+    setIsClient(true);
+
+    const handleScroll = () => {
+      if (typeof window !== "undefined") {
+        setScrolled(window.scrollY > 50);
+      }
+    };
+
+    // Only run on client side
+    if (typeof window !== "undefined") {
+      handleScroll(); // Initial check
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
-    document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
+    if (isClient && typeof document !== "undefined") {
+      document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
+    }
   };
 
   const closeAllMenus = () => {
     setIsMenuOpen(false);
     setOpenDropdown(null);
-    document.body.style.overflow = "auto";
+    if (isClient && typeof document !== "undefined") {
+      document.body.style.overflow = "auto";
+    }
   };
 
   const handleDropdownToggle = (index: number) => (e: React.MouseEvent) => {
@@ -214,16 +242,31 @@ const Navbar: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleCTAClick = () => {
+    closeAllMenus();
+    if (isClient) {
+      window.location.href = "/contact";
+    }
+  };
+
+  const handleMobileCTAClick = () => {
+    closeAllMenus();
+    if (isClient) {
+      window.location.href = "/contact";
+    }
+  };
 
   const isActive = (path?: string) => {
     if (!path) return false;
     if (path === "/") return pathname === "/";
     return pathname === path || pathname.startsWith(`${path}/`);
+  };
+
+  // Type guard function to check if item has submenu
+  const hasSubmenu = (
+    item: NavItem
+  ): item is { label: string; submenu: SubItem[] } => {
+    return "submenu" in item && Array.isArray(item.submenu);
   };
 
   return (
@@ -234,7 +277,7 @@ const Navbar: React.FC = () => {
         } transition-all duration-300 rounded-br-full`}
         initial={{ padding: "16px 0" }}
         animate={{
-          padding: scrolled ? "8px 0" : "16px 0",
+          padding: isClient && scrolled ? "8px 0" : "16px 0",
           backgroundColor: "rgba(255,255,255,0.98)",
         }}
       >
@@ -257,7 +300,7 @@ const Navbar: React.FC = () => {
                 className="relative"
                 onMouseEnter={() => {
                   setHoveredItem(item.label);
-                  if ("submenu" in item) setOpenDropdown(index);
+                  if (hasSubmenu(item)) setOpenDropdown(index);
                 }}
                 onMouseLeave={() => {
                   setHoveredItem(null);
@@ -287,7 +330,7 @@ const Navbar: React.FC = () => {
                       }}
                     >
                       <span className="whitespace-nowrap">{item.label}</span>
-                      {"submenu" in item && (
+                      {hasSubmenu(item) && (
                         <span
                           className="ml-1"
                           onClick={handleDropdownToggle(index)}
@@ -323,7 +366,7 @@ const Navbar: React.FC = () => {
                   )}
                 </motion.div>
 
-                {"submenu" in item && openDropdown === index && (
+                {hasSubmenu(item) && openDropdown === index && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -372,7 +415,7 @@ const Navbar: React.FC = () => {
 
             {/* CTA Button */}
             <motion.button
-              onClick={() => (window.location.href = "/contact")}
+              onClick={handleCTAClick}
               className="ml-4 text-white px-6 py-2 rounded-lg font-semibold uppercase tracking-wider text-sm shadow-lg hover:shadow-xl transition-all"
               style={{ backgroundColor: brandColor }}
               whileHover={{
@@ -392,6 +435,7 @@ const Navbar: React.FC = () => {
             onClick={toggleMenu}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </motion.button>
@@ -411,6 +455,7 @@ const Navbar: React.FC = () => {
               <button
                 onClick={closeAllMenus}
                 className="text-gray-800 p-2 rounded-full hover:bg-gray-100 transition-colors"
+                aria-label="Close menu"
               >
                 <X className="h-6 w-6" />
               </button>
@@ -419,7 +464,7 @@ const Navbar: React.FC = () => {
               <div className="grid gap-1">
                 {navItems.map((item, index) => (
                   <div key={item.label} className="border-b border-gray-100">
-                    {"submenu" in item ? (
+                    {hasSubmenu(item) ? (
                       <>
                         <div className="flex items-center">
                           <button
@@ -431,6 +476,7 @@ const Navbar: React.FC = () => {
                           <button
                             onClick={handleDropdownToggle(index)}
                             className="p-2"
+                            aria-label={`Toggle ${item.label} submenu`}
                           >
                             <ChevronDown
                               className={`h-4 w-4 transition-transform ${
@@ -481,10 +527,7 @@ const Navbar: React.FC = () => {
               {/* Mobile CTA */}
               <div className="mt-8">
                 <button
-                  onClick={() => {
-                    window.location.href = "/contact";
-                    closeAllMenus();
-                  }}
+                  onClick={handleMobileCTAClick}
                   className="block w-full text-white px-6 py-4 rounded-lg font-semibold uppercase tracking-wider text-center text-lg shadow-lg transition-all"
                   style={{ backgroundColor: brandColor }}
                 >
