@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Phone, Mail, Clock, MapPin } from "lucide-react";
 import RichLogo from "./RichLogo";
+import Image, { StaticImageData } from "next/image";
 import {
   bulksms,
   bulkvoice,
@@ -29,7 +30,7 @@ type SubItem = {
   label: string;
   path: string;
   description: string;
-  image: string;
+  image: StaticImageData; // Changed from string to StaticImageData
 };
 
 type NavItem =
@@ -54,7 +55,7 @@ const navItems: NavItem[] = [
   { label: "Social & Marketing", path: "/social-media-marketing" },
   { label: "Business Communication", path: "/business-communication" },
 
-  // Product mega-menu as “Solutions”
+  // Product mega-menu as "Solutions"
   {
     label: "Solutions",
     submenu: [
@@ -342,10 +343,12 @@ const Navbar: React.FC = () => {
                             >
                               <div className="flex items-start gap-3">
                                 <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                  <img
+                                  <Image
                                     src={subItem.image}
                                     alt={subItem.label}
-                                    className="w-8 h-8 object-contain"
+                                    width={32}
+                                    height={32}
+                                    className="object-contain"
                                   />
                                 </div>
                                 <div className="flex-1 min-w-0">
@@ -464,7 +467,7 @@ const Navbar: React.FC = () => {
                       </>
                     ) : (
                       <Link
-                        href={item.path}
+                        href={item.path!}
                         onClick={closeAllMenus}
                         className="flex items-center py-4 text-lg text-gray-800 font-semibold w-full text-left hover:text-[#07337a] transition-colors"
                       >
