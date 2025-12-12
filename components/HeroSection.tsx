@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
 // Service data with navigation
@@ -71,7 +71,7 @@ const serviceEntries = Object.entries(servicesData);
 
 const HeroSection = () => {
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null); // Changed to HTMLDivElement
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Scroll animations
   const { scrollYProgress } = useScroll({
@@ -90,6 +90,7 @@ const HeroSection = () => {
       transition: {
         staggerChildren: 0.15,
         duration: 0.8,
+        ease: easeOut,
       },
     },
   };
@@ -106,7 +107,7 @@ const HeroSection = () => {
       scale: 1,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: easeOut,
       },
     },
   };
@@ -118,7 +119,7 @@ const HeroSection = () => {
       y: -4,
       transition: {
         duration: 0.3,
-        ease: "easeOut",
+        ease: easeOut,
       },
     },
   };
