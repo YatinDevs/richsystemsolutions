@@ -127,7 +127,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-20 sm:pt-32 bg-gradient-to-br from-white via-blue-50/20 to-white overflow-hidden"
+      className="relative flex flex-col items-center justify-center text-center px-4 sm:px-6 py-18 sm:py-42 bg-gradient-to-br from-white via-blue-50/20 to-white overflow-hidden"
     >
       {/* Animated Background Elements */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />

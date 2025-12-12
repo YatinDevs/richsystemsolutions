@@ -26,166 +26,315 @@ import {
   faq,
 } from "../assets";
 
-type SubItem = {
+type ServiceItem = {
   label: string;
   path: string;
   description: string;
   image: StaticImageData;
+  keywords: string[]; // SEO keywords for each service
 };
 
-type NavItem =
-  | {
-      label: string;
-      path: string;
-      submenu?: never;
-    }
-  | {
-      label: string;
-      path?: never;
-      submenu: SubItem[];
-    };
+type DepartmentItem = {
+  label: string;
+  path: string;
+  title: string; // SEO title
+  metaDescription: string; // SEO meta description
+  services: ServiceItem[];
+};
 
 const brandColor = "#07337a";
 
-const navItems: NavItem[] = [
-  { label: "Home", path: "/" },
-
-  // 3 department tabs
-  { label: "Software & IT", path: "/software-it-services" },
-  { label: "Social & Marketing", path: "/social-media-marketing" },
-  { label: "Business Communication", path: "/business-communication" },
-
-  // Product mega-menu as "Solutions"
+// SEO Optimized Departments Structure
+const departments: DepartmentItem[] = [
   {
-    label: "Solutions",
-    submenu: [
+    label: "Software & IT",
+    path: "/software-it-services",
+    title: "Software & IT Services Company | Custom Software Development",
+    metaDescription:
+      "Complete software & IT solutions including custom software development, web development, mobile apps, UI/UX design, and enterprise solutions for businesses.",
+    services: [
       {
-        label: "Bulk SMS",
-        path: "/products/bulk-sms",
+        label: "Custom Software Development",
+        path: "/software-it-services/custom-software-development",
         description:
-          "Secure, timely delivery of Transactional, Promotional, OTP messages.",
-        image: bulksms,
-      },
-      {
-        label: "Bulk Voice",
-        path: "/products/bulk-voice",
-        description:
-          "Send your message instantly with reliable bulk voice solutions.",
-        image: bulkvoice,
-      },
-      {
-        label: "Whatsapp Service",
-        path: "/products/whatsapp-service",
-        description:
-          "Power your business with the official WhatsApp Business API.",
-        image: whatsappservice,
-      },
-      {
-        label: "Digital Marketing",
-        path: "/products/digital-marketing",
-        description:
-          "Boost your brand presence with full-funnel digital marketing.",
-        image: digitalmarketing,
-      },
-      {
-        label: "Whatsapp Chatbot",
-        path: "/products/whats-chatbot",
-        description:
-          "Automate customer conversations with WhatsApp chatbot flows.",
-        image: whatsappchatbot,
-      },
-      {
-        label: "Digital Automation",
-        path: "/products/digital-auto",
-        description:
-          "Streamline operations with custom digital automation solutions.",
-        image: digitalautomation,
-      },
-      {
-        label: "Design Development",
-        path: "/products/design-develop",
-        description: "Transform ideas into powerful web and app experiences.",
+          "Tailored software solutions for your business needs with modern technologies.",
         image: designdevelopment,
+        keywords: [
+          "custom software",
+          "enterprise software",
+          "business software",
+          "software solutions",
+        ],
+      },
+      {
+        label: "Web Development",
+        path: "/software-it-services/web-development",
+        description:
+          "Responsive websites with React, Next.js, and modern frameworks.",
+        image: designdevelopment,
+        keywords: [
+          "web development",
+          "website design",
+          "responsive websites",
+          "frontend development",
+        ],
+      },
+      {
+        label: "Mobile App Development",
+        path: "/software-it-services/mobile-app-development",
+        description:
+          "Native and cross-platform iOS & Android mobile applications.",
+        image: digitalautomation,
+        keywords: [
+          "mobile apps",
+          "ios development",
+          "android apps",
+          "react native",
+        ],
+      },
+      {
+        label: "UI/UX Design",
+        path: "/software-it-services/ui-ux-design",
+        description:
+          "User-centered interface design and experience optimization.",
+        image: graphicdesign,
+        keywords: [
+          "ui design",
+          "ux design",
+          "user experience",
+          "interface design",
+        ],
+      },
+      {
+        label: "E-Commerce Solutions",
+        path: "/software-it-services/ecommerce-solutions",
+        description: "Complete e-commerce platforms with payment integration.",
+        image: designdevelopment,
+        keywords: [
+          "ecommerce development",
+          "online store",
+          "shopping cart",
+          "payment gateway",
+        ],
+      },
+      {
+        label: "Cloud Solutions",
+        path: "/software-it-services/cloud-solutions",
+        description: "Cloud migration, deployment, and management services.",
+        image: digitalautomation,
+        keywords: [
+          "cloud computing",
+          "aws",
+          "azure",
+          "google cloud",
+          "cloud migration",
+        ],
+      },
+      {
+        label: "API Integration",
+        path: "/software-it-services/api-integration",
+        description: "Third-party API integrations and custom API development.",
+        image: whatsappservice,
+        keywords: [
+          "api integration",
+          "rest api",
+          "web services",
+          "api development",
+        ],
+      },
+      {
+        label: "Maintenance & Support",
+        path: "/software-it-services/maintenance-support",
+        description: "Ongoing software maintenance and technical support.",
+        image: alertsystem,
+        keywords: [
+          "software maintenance",
+          "technical support",
+          "updates",
+          "bug fixes",
+        ],
+      },
+    ],
+  },
+  {
+    label: "Digital Marketing",
+    path: "/digital-marketing-services",
+    title: "Digital Marketing Agency | SEO & Social Media Marketing Services",
+    metaDescription:
+      "Full-service digital marketing agency offering SEO, social media marketing, PPC, content marketing, and email marketing services to grow your business.",
+    services: [
+      {
+        label: "SEO Services",
+        path: "/digital-marketing-services/seo",
+        description:
+          "Search engine optimization to improve rankings and visibility.",
+        image: digitalmarketing,
+        keywords: [
+          "seo services",
+          "search engine optimization",
+          "organic traffic",
+          "keyword ranking",
+        ],
+      },
+      {
+        label: "Social Media Marketing",
+        path: "/digital-marketing-services/social-media-marketing",
+        description: "Complete social media strategy and management.",
+        image: digitalmarketing,
+        keywords: [
+          "social media marketing",
+          "smm",
+          "facebook marketing",
+          "instagram marketing",
+        ],
+      },
+      {
+        label: "PPC Advertising",
+        path: "/digital-marketing-services/ppc-advertising",
+        description:
+          "Pay-per-click campaigns on Google, Facebook, and other platforms.",
+        image: digitalmarketing,
+        keywords: [
+          "ppc",
+          "google ads",
+          "facebook ads",
+          "paid advertising",
+          "pay per click",
+        ],
+      },
+      {
+        label: "Content Marketing",
+        path: "/digital-marketing-services/content-marketing",
+        description: "Strategic content creation and distribution.",
+        image: digitalmarketing,
+        keywords: [
+          "content marketing",
+          "blog writing",
+          "content strategy",
+          "copywriting",
+        ],
+      },
+      {
+        label: "Email Marketing",
+        path: "/digital-marketing-services/email-marketing",
+        description: "Targeted email campaigns and automation.",
+        image: bulkemail,
+        keywords: [
+          "email marketing",
+          "email campaigns",
+          "newsletter",
+          "mailchimp",
+        ],
+      },
+      {
+        label: "WhatsApp Marketing",
+        path: "/digital-marketing-services/whatsapp-marketing",
+        description: "WhatsApp Business API and marketing campaigns.",
+        image: whatsappservice,
+        keywords: [
+          "whatsapp marketing",
+          "whatsapp business",
+          "bulk whatsapp",
+          "whatsapp api",
+        ],
+      },
+      {
+        label: "Bulk SMS Marketing",
+        path: "/digital-marketing-services/bulk-sms",
+        description: "Transactional and promotional SMS campaigns.",
+        image: bulksms,
+        keywords: [
+          "bulk sms",
+          "sms marketing",
+          "text marketing",
+          "promotional sms",
+        ],
       },
       {
         label: "Graphic Design",
-        path: "/products/graphic-design",
-        description:
-          "Creative brand identities, marketing assets, and visuals.",
+        path: "/digital-marketing-services/graphic-design",
+        description: "Brand identity, logos, and marketing materials.",
         image: graphicdesign,
+        keywords: [
+          "graphic design",
+          "logo design",
+          "brand identity",
+          "marketing materials",
+        ],
       },
       {
-        label: "Alert System",
-        path: "/products/alert-system",
-        description:
-          "Stay informed instantly with missed-call and alert systems.",
-        image: alertsystem,
-      },
-      {
-        label: "IVR System",
-        path: "/products/ivr-system",
-        description: "Automate customer calls with flexible IVR call flows.",
-        image: ivrsystem,
-      },
-      {
-        label: "Bulk Email",
-        path: "/products/bulk-email",
-        description: "Run high-deliverability email campaigns at scale.",
-        image: bulkemail,
-      },
-      {
-        label: "Outdoor Marketing",
-        path: "/products/outdoor-marketing",
-        description:
-          "Strategic outdoor campaigns with hoardings and billboards.",
+        label: "Video Marketing",
+        path: "/digital-marketing-services/video-marketing",
+        description: "Promotional videos, reels, and animated content.",
         image: outdoormarketing,
+        keywords: [
+          "video marketing",
+          "promotional videos",
+          "animated videos",
+          "reels",
+        ],
       },
     ],
   },
+];
 
-  // Resources mega-menu
+// Essential Navigation Items (SEO Focused)
+const essentialNavItems = [
   {
-    label: "Resources",
-    submenu: [
-      {
-        label: "Career",
-        path: "/resources/career",
-        description:
-          "Explore career opportunities and grow with our digital team.",
-        image: career,
-      },
-      {
-        label: "Blog",
-        path: "/resources/blog",
-        description:
-          "Insights on software, digital marketing, and communication.",
-        image: blog,
-      },
-      {
-        label: "How To Guide",
-        path: "/resources/how-to-guide",
-        description: "Step-by-step guides to use our platforms and services.",
-        image: howtoguide,
-      },
-      {
-        label: "FAQ",
-        path: "/resources/faq",
-        description:
-          "Answers to frequently asked questions about our services.",
-        image: faq,
-      },
-    ],
+    label: "Home",
+    path: "/",
+    title: "IT Services & Digital Marketing Company",
+    description:
+      "Leading IT services and digital marketing company offering software development, web development, and complete digital marketing solutions.",
   },
+  {
+    label: "About Us",
+    path: "/about-us",
+    title: "About Our Company | Our Story & Mission",
+    description:
+      "Learn about our journey, mission, values, and the team behind our successful IT and digital marketing projects.",
+  },
+  // {
+  //   label: "Case Studies",
+  //   path: "/case-studies",
+  //   title: "Our Work & Case Studies | Project Portfolio",
+  //   description:
+  //     "Browse our portfolio of successful software development and digital marketing projects with detailed case studies.",
+  // },
+  {
+    label: "Blog",
+    path: "/blog",
+    title: "IT & Digital Marketing Blog | Latest Insights",
+    description:
+      "Read our latest articles on software development, digital marketing trends, SEO tips, and technology insights.",
+  },
+  {
+    label: "Contact",
+    path: "/contact",
+    title: "Contact Us | Get in Touch for IT Services",
+    description:
+      "Contact our team for software development, digital marketing services, or any inquiries about our IT solutions.",
+  },
+  // {
+  //   label: "Careers",
+  //   path: "/careers",
+  //   title: "Join Our Team | Careers in IT & Digital Marketing",
+  //   description:
+  //     "Explore career opportunities in software development, digital marketing, and join our growing team of experts.",
+  // },
+];
 
-  { label: "Contact", path: "/contact" },
-  { label: "Career", path: "/career" },
-  { label: "Login", path: "/login" },
+// Important Pages for SEO (hidden from main nav but should exist)
+const importantPages = [
+  { path: "/privacy-policy", label: "Privacy Policy" },
+  { path: "/terms-of-service", label: "Terms of Service" },
+  { path: "/sitemap", label: "Sitemap" },
 ];
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -200,9 +349,8 @@ const Navbar: React.FC = () => {
       }
     };
 
-    // Only run on client side
     if (typeof window !== "undefined") {
-      handleScroll(); // Initial check
+      handleScroll();
       window.addEventListener("scroll", handleScroll);
     }
 
@@ -228,19 +376,14 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const handleDropdownToggle = (index: number) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setOpenDropdown((prev) => (prev === index ? null : index));
-  };
-
-  const handleNavItemClick = (item: NavItem, index: number) => {
-    if ("submenu" in item) {
-      setOpenDropdown((prev) => (prev === index ? null : index));
-    } else {
-      closeAllMenus();
-    }
-  };
+  const handleDepartmentToggle =
+    (departmentLabel: string) => (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpenDropdown((prev) =>
+        prev === departmentLabel ? null : departmentLabel
+      );
+    };
 
   const handleCTAClick = () => {
     closeAllMenus();
@@ -256,156 +399,270 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const isActive = (path?: string) => {
-    if (!path) return false;
+  const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
     return pathname === path || pathname.startsWith(`${path}/`);
   };
 
-  // Type guard function to check if item has submenu
-  const hasSubmenu = (
-    item: NavItem
-  ): item is { label: string; submenu: SubItem[] } => {
-    return "submenu" in item && Array.isArray(item.submenu);
-  };
-
   return (
     <header className="fixed w-full z-50 font-sans">
+      {/* Top Contact Bar */}
+      <div className="bg-[#07337a] text-white text-sm hidden lg:block">
+        <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
+          <div className="flex items-center space-x-6">
+            <a
+              href="tel:+919595902006"
+              className="flex items-center hover:text-blue-200 transition-colors"
+            >
+              <Phone size={14} className="mr-2" />
+              +91 95959 02006
+            </a>
+            <a
+              href="mailto:support@richsol.com"
+              className="flex items-center hover:text-blue-200 transition-colors"
+            >
+              <Mail size={14} className="mr-2" />
+              support@richsol.com
+            </a>
+            <div className="flex items-center">
+              <Clock size={14} className="mr-2" />
+              Mon–Sat: 9:30 AM – 6:30 PM
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://www.linkedin.com/company/richsol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-200 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://twitter.com/richsol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-200 transition-colors"
+            >
+              Twitter
+            </a>
+            <a
+              href="https://www.instagram.com/richsol"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-200 transition-colors"
+            >
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation */}
       <motion.nav
         className={`${
           scrolled ? "bg-white shadow-lg" : "bg-white"
-        } transition-all duration-300 rounded-br-full`}
-        initial={{ padding: "16px 0" }}
+        } transition-all duration-300`}
+        initial={{ padding: "12px 0" }}
         animate={{
-          padding: isClient && scrolled ? "8px 0" : "16px 0",
+          padding: isClient && scrolled ? "8px 0" : "12px 0",
           backgroundColor: "rgba(255,255,255,0.98)",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo with optimized alt text */}
           <motion.div
             className="flex items-center"
             whileHover={{ scale: 1.03 }}
           >
-            <Link href="/" className="cursor-pointer">
+            <Link
+              href="/"
+              className="cursor-pointer"
+              aria-label="RichSol IT Services & Digital Marketing Company"
+            >
               <RichLogo />
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item, index) => (
-              <div
-                key={item.label}
-                className="relative"
-                onMouseEnter={() => {
-                  setHoveredItem(item.label);
-                  if (hasSubmenu(item)) setOpenDropdown(index);
-                }}
-                onMouseLeave={() => {
-                  setHoveredItem(null);
-                  setOpenDropdown(null);
-                }}
-              >
-                <motion.div className="relative">
-                  {"path" in item && item.path ? (
-                    <Link
-                      href={item.path}
-                      className={`flex items-center px-4 py-2 font-medium uppercase tracking-wider text-sm relative transition-colors ${
-                        isActive(item.path)
-                          ? "text-[#07337a]"
-                          : "text-gray-800 hover:text-[#07337a]"
-                      }`}
-                      onClick={() => handleNavItemClick(item, index)}
-                    >
-                      <span className="whitespace-nowrap">{item.label}</span>
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={() => handleNavItemClick(item, index)}
-                      className="flex items-center text-gray-800 transition-colors px-4 py-2 font-medium uppercase tracking-wider text-sm relative hover:text-[#07337a]"
-                      style={{
-                        color:
-                          hoveredItem === item.label ? brandColor : "inherit",
+          <div className="hidden lg:flex items-center space-x-2">
+            {/* Essential Pages */}
+            {essentialNavItems.map((item) => (
+              <div key={item.label} className="relative group">
+                <Link
+                  href={item.path}
+                  className={`px-4 py-2 font-medium uppercase tracking-wider text-sm relative transition-colors ${
+                    isActive(item.path)
+                      ? "text-[#07337a]"
+                      : "text-gray-800 hover:text-[#07337a]"
+                  }`}
+                  onClick={closeAllMenus}
+                >
+                  <span className="whitespace-nowrap">{item.label}</span>
+                  {isActive(item.path) && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-0.5"
+                      style={{ backgroundColor: brandColor }}
+                      layoutId="navUnderline"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
                       }}
-                    >
-                      <span className="whitespace-nowrap">{item.label}</span>
-                      {hasSubmenu(item) && (
-                        <span
-                          className="ml-1"
-                          onClick={handleDropdownToggle(index)}
-                        >
-                          <ChevronDown
-                            className={`h-3 w-3 transition-transform ${
-                              openDropdown === index ? "rotate-180" : ""
-                            }`}
-                            style={{
-                              color:
-                                hoveredItem === item.label
-                                  ? brandColor
-                                  : "inherit",
-                            }}
-                          />
-                        </span>
-                      )}
-                      {hoveredItem === item.label && (
-                        <motion.div
-                          className="absolute bottom-0 left-0 w-full h-0.5"
-                          style={{ backgroundColor: brandColor }}
-                          layoutId="navUnderline"
-                          initial={{ width: 0 }}
-                          animate={{ width: "100%" }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 20,
-                          }}
-                        />
-                      )}
-                    </button>
+                    />
                   )}
-                </motion.div>
+                </Link>
+              </div>
+            ))}
 
-                {hasSubmenu(item) && openDropdown === index && (
+            {/* Departments with Mega Menu */}
+            {departments.map((department) => (
+              <div
+                key={department.label}
+                className="relative group"
+                onMouseEnter={() => setOpenDropdown(department.label)}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button
+                  className="flex items-center text-gray-800 transition-colors px-4 py-2 font-medium uppercase tracking-wider text-sm relative hover:text-[#07337a] group"
+                  style={{
+                    color:
+                      openDropdown === department.label ||
+                      isActive(department.path)
+                        ? brandColor
+                        : "inherit",
+                  }}
+                >
+                  <span className="whitespace-nowrap">{department.label}</span>
+                  <ChevronDown
+                    className={`h-3 w-3 ml-1 transition-transform ${
+                      openDropdown === department.label ? "rotate-180" : ""
+                    }`}
+                  />
+                  {(openDropdown === department.label ||
+                    isActive(department.path)) && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-0.5"
+                      style={{ backgroundColor: brandColor }}
+                      layoutId="navUnderline"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      }}
+                    />
+                  )}
+                </button>
+
+                {/* Department Mega Menu */}
+                {openDropdown === department.label && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute left-0 top-full w-[700px] bg-white rounded-lg shadow-xl z-50 border border-gray-100"
-                    onMouseEnter={() => setOpenDropdown(index)}
+                    className="absolute left-1/2 transform -translate-x-1/2 top-full w-[800px] bg-white rounded-lg shadow-xl z-50 border border-gray-200"
+                    onMouseEnter={() => setOpenDropdown(department.label)}
                     onMouseLeave={() => setOpenDropdown(null)}
                   >
-                    <div className="p-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        {item.submenu.map((subItem) => (
-                          <div key={subItem.label} className="relative">
-                            <Link
-                              href={subItem.path}
-                              onClick={closeAllMenus}
-                              className="block p-3 text-gray-700 cursor-pointer transition-all hover:bg-gray-50 rounded-lg border border-transparent hover:border-gray-200 group"
-                            >
-                              <div className="flex items-start gap-3">
-                                <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
-                                  <Image
-                                    src={subItem.image}
-                                    alt={subItem.label}
-                                    width={32}
-                                    height={32}
-                                    className="object-contain"
-                                  />
+                    <div className="p-6">
+                      <div className="mb-6">
+                        <Link
+                          href={department.path}
+                          onClick={closeAllMenus}
+                          className="inline-block"
+                        >
+                          <h3 className="text-2xl font-bold text-gray-900 hover:text-[#07337a] transition-colors">
+                            {department.label} Services
+                          </h3>
+                        </Link>
+                        <p className="text-gray-600 mt-2">
+                          {department.metaDescription}
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-6">
+                        {/* Services Grid */}
+                        <div className="space-y-3">
+                          {department.services
+                            .slice(0, Math.ceil(department.services.length / 2))
+                            .map((service) => (
+                              <Link
+                                key={service.label}
+                                href={service.path}
+                                onClick={closeAllMenus}
+                                className="group block p-4 rounded-lg hover:bg-blue-50 transition-all border border-transparent hover:border-blue-100"
+                              >
+                                <div className="flex items-start gap-4">
+                                  <div className="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg flex-shrink-0">
+                                    <Image
+                                      src={service.image}
+                                      alt={service.label}
+                                      width={24}
+                                      height={24}
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-semibold text-gray-900 group-hover:text-[#07337a] transition-colors">
+                                      {service.label}
+                                    </h4>
+                                    <p className="text-sm text-gray-600 mt-1">
+                                      {service.description}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                  <h3 className="font-semibold text-gray-900 text-sm mb-1 leading-tight group-hover:text-[#07337a] transition-colors duration-300">
-                                    {subItem.label}
-                                  </h3>
-                                  <p className="text-xs text-gray-600 leading-tight">
-                                    {subItem.description}
-                                  </p>
+                              </Link>
+                            ))}
+                        </div>
+
+                        <div className="space-y-3">
+                          {department.services
+                            .slice(Math.ceil(department.services.length / 2))
+                            .map((service) => (
+                              <Link
+                                key={service.label}
+                                href={service.path}
+                                onClick={closeAllMenus}
+                                className="group block p-4 rounded-lg hover:bg-blue-50 transition-all border border-transparent hover:border-blue-100"
+                              >
+                                <div className="flex items-start gap-4">
+                                  <div className="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-lg flex-shrink-0">
+                                    <Image
+                                      src={service.image}
+                                      alt={service.label}
+                                      width={24}
+                                      height={24}
+                                      className="object-contain"
+                                    />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-semibold text-gray-900 group-hover:text-[#07337a] transition-colors">
+                                      {service.label}
+                                    </h4>
+                                    <p className="text-sm text-gray-600 mt-1">
+                                      {service.description}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            </Link>
-                          </div>
-                        ))}
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+
+                      {/* Department CTA */}
+                      <div className="mt-8 pt-6 border-t border-gray-200">
+                        <Link
+                          href={department.path}
+                          onClick={closeAllMenus}
+                          className="inline-flex items-center text-[#07337a] font-semibold hover:text-blue-800 transition-colors"
+                        >
+                          View All {department.label} Services
+                          <ChevronDown className="h-4 w-4 ml-1 rotate-270" />
+                        </Link>
                       </div>
                     </div>
                   </motion.div>
@@ -425,7 +682,7 @@ const Navbar: React.FC = () => {
               }}
               whileTap={{ scale: 0.98 }}
             >
-              Get Started
+              Get Free Consultation
             </motion.button>
           </div>
 
@@ -461,65 +718,88 @@ const Navbar: React.FC = () => {
               </button>
             </div>
             <div className="max-w-7xl mx-auto px-6">
-              <div className="grid gap-1">
-                {navItems.map((item, index) => (
+              <div className="space-y-1">
+                {/* Essential Pages */}
+                {essentialNavItems.map((item) => (
                   <div key={item.label} className="border-b border-gray-100">
-                    {hasSubmenu(item) ? (
-                      <>
-                        <div className="flex items-center">
-                          <button
-                            onClick={() => handleNavItemClick(item, index)}
-                            className="flex-1 flex items-center py-4 text-lg text-gray-800 font-semibold hover:text-[#07337a] transition-colors"
-                          >
-                            <span className="ml-3">{item.label}</span>
-                          </button>
-                          <button
-                            onClick={handleDropdownToggle(index)}
-                            className="p-2"
-                            aria-label={`Toggle ${item.label} submenu`}
-                          >
-                            <ChevronDown
-                              className={`h-4 w-4 transition-transform ${
-                                openDropdown === index ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
-                        </div>
-                        <AnimatePresence>
-                          {openDropdown === index && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pl-8 overflow-hidden"
-                            >
-                              {item.submenu.map((subItem) => (
-                                <div
-                                  key={subItem.label}
-                                  className="border-t border-gray-100"
-                                >
-                                  <Link
-                                    href={subItem.path}
-                                    onClick={closeAllMenus}
-                                    className="block py-3 text-sm text-gray-600 hover:text-[#07337a] transition-colors font-medium"
-                                  >
-                                    {subItem.label}
-                                  </Link>
-                                </div>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        href={item.path!}
-                        onClick={closeAllMenus}
-                        className="flex items-center py-4 text-lg text-gray-800 font-semibold w-full text-left hover:text-[#07337a] transition-colors"
+                    <Link
+                      href={item.path}
+                      onClick={closeAllMenus}
+                      className="flex items-center py-4 text-lg text-gray-800 font-semibold w-full text-left hover:text-[#07337a] transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                ))}
+
+                {/* Departments */}
+                {departments.map((department) => (
+                  <div
+                    key={department.label}
+                    className="border-b border-gray-100"
+                  >
+                    <div className="flex items-center">
+                      <button
+                        onClick={() =>
+                          setOpenDropdown((prev) =>
+                            prev === department.label ? null : department.label
+                          )
+                        }
+                        className="flex-1 flex items-center py-4 text-lg text-gray-800 font-semibold hover:text-[#07337a] transition-colors text-left"
                       >
-                        <span className="ml-3">{item.label}</span>
-                      </Link>
-                    )}
+                        {department.label}
+                      </button>
+                      <button
+                        onClick={() =>
+                          setOpenDropdown((prev) =>
+                            prev === department.label ? null : department.label
+                          )
+                        }
+                        className="p-2"
+                      >
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform ${
+                            openDropdown === department.label
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
+                    <AnimatePresence>
+                      {openDropdown === department.label && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="pl-4 overflow-hidden"
+                        >
+                          {department.services.map((service) => (
+                            <div
+                              key={service.label}
+                              className="border-t border-gray-100"
+                            >
+                              <Link
+                                href={service.path}
+                                onClick={closeAllMenus}
+                                className="block py-3 text-gray-600 hover:text-[#07337a] transition-colors font-medium pl-4"
+                              >
+                                {service.label}
+                              </Link>
+                            </div>
+                          ))}
+                          <div className="border-t border-gray-100">
+                            <Link
+                              href={department.path}
+                              onClick={closeAllMenus}
+                              className="block py-3 text-[#07337a] font-semibold pl-4"
+                            >
+                              View All {department.label} Services →
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 ))}
               </div>
@@ -531,36 +811,38 @@ const Navbar: React.FC = () => {
                   className="block w-full text-white px-6 py-4 rounded-lg font-semibold uppercase tracking-wider text-center text-lg shadow-lg transition-all"
                   style={{ backgroundColor: brandColor }}
                 >
-                  Get Started
+                  Get Free Consultation
                 </button>
               </div>
 
               {/* Mobile Contact Info */}
-              <div className="mt-8 p-4 bg-gray-50 rounded-lg text-sm">
-                <h3 className="font-semibold text-gray-900 mb-3">Contact Us</h3>
-                <div className="space-y-3">
-                  <a
-                    href="mailto:support@richsol.com"
-                    className="text-gray-700 hover:text-[#07337a] flex items-center transition-colors"
-                  >
-                    <Mail size={16} className="mr-2" />
-                    support@richsol.com
-                  </a>
+              <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                <h3 className="font-semibold text-gray-900 mb-3 text-lg">
+                  Contact Info
+                </h3>
+                <div className="space-y-4">
                   <a
                     href="tel:+919595902006"
-                    className="text-gray-700 hover:text-[#07337a] flex items-center transition-colors"
+                    className="text-gray-700 hover:text-[#07337a] flex items-center transition-colors text-base"
                   >
-                    <Phone size={16} className="mr-2" />
+                    <Phone size={18} className="mr-3" />
                     +91 95959 02006
                   </a>
+                  <a
+                    href="mailto:support@richsol.com"
+                    className="text-gray-700 hover:text-[#07337a] flex items-center transition-colors text-base"
+                  >
+                    <Mail size={18} className="mr-3" />
+                    support@richsol.com
+                  </a>
                   <div className="text-gray-700 flex items-start">
-                    <MapPin size={16} className="mr-2 mt-0.5 flex-shrink-0" />
-                    <span>
+                    <MapPin size={18} className="mr-3 mt-1 flex-shrink-0" />
+                    <span className="text-base">
                       4th Floor, Akravi Disha, Nashik, Maharashtra 422002
                     </span>
                   </div>
-                  <div className="text-gray-700 flex items-center">
-                    <Clock size={16} className="mr-2" />
+                  <div className="text-gray-700 flex items-center text-base">
+                    <Clock size={18} className="mr-3" />
                     Mon–Sat: 9:30 AM – 6:30 PM
                   </div>
                 </div>
