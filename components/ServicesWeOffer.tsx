@@ -227,7 +227,7 @@ const ServicesWeOffer = () => {
                     activeService === index
                       ? "bg-white shadow-2xl border border-blue-200 transform scale-105"
                       : hoveredService === index
-                      ? "bg-white shadow-lg border border-gray-200"
+                      ? "bg-white shadow-lg  border-gray-200"
                       : "bg-transparent"
                   }`}
                 >
@@ -404,7 +404,7 @@ const ServicesWeOffer = () => {
                 </motion.div>
                 <div>
                   <motion.h3
-                    className="text-4xl font-bold text-gray-900 mt-2 font-[Inter] tracking-tight mb-6"
+                    className="text-2xl md:text-4xl font-bold text-gray-900 mt-2 font-[Inter] tracking-tight mb-6"
                     whileInView={{ opacity: 1, x: 0 }}
                     initial={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.6 }}
@@ -530,7 +530,7 @@ const ServicesWeOffer = () => {
               y: -5,
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all duration-300 font-[Inter] relative overflow-hidden group"
+            className="inline-flex items-center text-white px-6 py-2.5 rounded-2xl font-bold text-lg transition-all duration-300 font-[Inter] relative overflow-hidden group"
             style={{ backgroundColor: brandColor }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -562,7 +562,7 @@ const ServicesWeOffer = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="mt-8 text-sm text-gray-500 font-[Inter] inline-flex items-center bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm"
+            className="mt-8 md:ml-10 text-sm text-gray-500 font-[Inter] inline-flex items-center bg-white px-4 py-2 rounded-full border border-gray-200 shadow-sm"
           >
             <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
             Opening Hours: Monday - Saturday: 9:30 AM - 6:30 PM

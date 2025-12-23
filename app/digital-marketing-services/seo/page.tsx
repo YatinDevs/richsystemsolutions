@@ -36,7 +36,7 @@ export default function SeoServicesPage() {
           __html: JSON.stringify(serviceJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <main className="mx-auto max-w-6xl px-4 py-10">
+      <main className="mx-auto max-w-6xl px-4 py-50">
         <nav className="mb-4 text-sm text-slate-600">
           <a
             href="/digital-marketing-services"

@@ -162,7 +162,7 @@ const HeroSection = () => {
           From Strategy to Software
           <br />
           <motion.span
-            className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent"
+            className="bg-gradient-to-r from-blue-600 via-purple-400 to-blue-800 bg-clip-text text-transparent"
             animate={{ backgroundPosition: ["0%", "100%"] }}
             transition={{
               duration: 3,

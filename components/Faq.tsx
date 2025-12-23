@@ -402,7 +402,7 @@ const Faq = ({ subpage = 0 }: FaqProps) => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 font-[Poppins] tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8 font-[Poppins] tracking-tight ">
               FREQUENTLY
               <br />
               ASKED QUESTIONS
@@ -518,7 +518,7 @@ const Faq = ({ subpage = 0 }: FaqProps) => {
               boxShadow: `0px 8px 25px ${brandColor}40`,
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 font-[Inter]"
+            className="inline-flex items-center text-white px-6 py-2.5 rounded-full font-semibold text-lg transition-all duration-300 font-[Inter]"
             style={{ backgroundColor: brandColor }}
           >
             Get Your Questions Answered

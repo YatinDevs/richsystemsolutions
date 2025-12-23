@@ -1,4 +1,4 @@
-import Richlogo from "./rich.png";
+import Richlogo from "./rich-logo.png";
 import footerLogo from "./footer-logo.png";
 import trustedClient from "./homeimg/clienttrust.png";
 import quoteImg from "./homeimg/qutoe.png";

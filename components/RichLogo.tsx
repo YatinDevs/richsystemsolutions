@@ -16,7 +16,7 @@ const RichLogo: React.FC<LogoProps> = ({ className = "" }) => {
       transition={{ duration: 0.6 }}
     >
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
+        initial={{ scale: 0.8, opacity: 1 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
@@ -25,7 +25,7 @@ const RichLogo: React.FC<LogoProps> = ({ className = "" }) => {
           alt="Rich System Solutions Logo"
           width={96}
           height={96}
-          className="p-3 w-24 h-24 md:w-[140px] md:h-[120px]"
+          className=" w-24 h-24 md:w-32 md:h-32"
           priority
         />
       </motion.div>

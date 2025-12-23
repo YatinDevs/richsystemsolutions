@@ -25,6 +25,7 @@ import {
   howtoguide,
   faq,
 } from "../assets";
+import TopBar from "./navbar/Topbar";
 
 type ServiceItem = {
   label: string;
@@ -407,56 +408,7 @@ const Navbar: React.FC = () => {
   return (
     <header className="fixed w-full z-50 font-sans">
       {/* Top Contact Bar */}
-      <div className="bg-[#07337a] text-white text-sm hidden lg:block">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
-          <div className="flex items-center space-x-6">
-            <a
-              href="tel:+919595902006"
-              className="flex items-center hover:text-blue-200 transition-colors"
-            >
-              <Phone size={14} className="mr-2" />
-              +91 95959 02006
-            </a>
-            <a
-              href="mailto:support@richsol.com"
-              className="flex items-center hover:text-blue-200 transition-colors"
-            >
-              <Mail size={14} className="mr-2" />
-              support@richsol.com
-            </a>
-            <div className="flex items-center">
-              <Clock size={14} className="mr-2" />
-              Mon–Sat: 9:30 AM – 6:30 PM
-            </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <a
-              href="https://www.linkedin.com/company/richsol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-200 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://twitter.com/richsol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-200 transition-colors"
-            >
-              Twitter
-            </a>
-            <a
-              href="https://www.instagram.com/richsol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-200 transition-colors"
-            >
-              Instagram
-            </a>
-          </div>
-        </div>
-      </div>
+      <TopBar />
 
       {/* Main Navigation */}
       <motion.nav
@@ -465,11 +417,11 @@ const Navbar: React.FC = () => {
         } transition-all duration-300`}
         initial={{ padding: "12px 0" }}
         animate={{
-          padding: isClient && scrolled ? "8px 0" : "12px 0",
+          padding: isClient && scrolled ? "12px 0" : "8px 0",
           backgroundColor: "rgba(255,255,255,0.98)",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6  flex justify-between items-center">
           {/* Logo with optimized alt text */}
           <motion.div
             className="flex items-center"
