@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteSEO } from "@/utils/seoConfig";
+import FloatingContactWidget from "@/components/FloatingContactWidget";
+import FloatingButtons from "@/components/FloatingButtons";
 
 export const metadata: Metadata = {
   title: {
@@ -95,6 +97,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        {/* <FloatingButtons /> */}
       </body>
     </html>
   );

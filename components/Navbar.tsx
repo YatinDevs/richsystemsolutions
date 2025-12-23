@@ -414,10 +414,11 @@ const Navbar: React.FC = () => {
       <motion.nav
         className={`${
           scrolled ? "bg-white shadow-lg" : "bg-white"
-        } transition-all duration-300`}
+        } transition-all duration-300 md:pt-20 pt-4`}
         initial={{ padding: "12px 0" }}
         animate={{
-          padding: isClient && scrolled ? "12px 0" : "8px 0",
+          padding: isClient && scrolled ? "8px 0" : "8px 0",
+
           backgroundColor: "rgba(255,255,255,0.98)",
         }}
       >
