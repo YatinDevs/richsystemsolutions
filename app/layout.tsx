@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { siteSEO } from "@/utils/seoConfig";
-import FloatingContactWidget from "@/components/FloatingContactWidget";
+import FloatingContactWidget from "@/components/FloatingButtons";
 import FloatingButtons from "@/components/FloatingButtons";
 
 export const metadata: Metadata = {

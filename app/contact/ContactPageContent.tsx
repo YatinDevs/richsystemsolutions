@@ -53,6 +53,7 @@ export default function ContactPageContent({
     phone: "",
     service: "",
     message: "",
+    consent: false, // Add this line
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
@@ -87,7 +88,14 @@ export default function ContactPageContent({
     setTimeout(() => {
       setSubmitStatus("success");
       setIsSubmitting(false);
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+        consent: false, // Add this line
+      });
 
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus("idle"), 5000);
@@ -284,6 +292,56 @@ export default function ContactPageContent({
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all resize-none"
                     placeholder="Tell us about your project requirements, timeline, and goals..."
                   />
+                </div>
+
+                {/* Consent Checkbox Section */}
+                <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 space-y-4">
+                  {/* Text above checkbox */}
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    To provide you with the best service and respond to your
+                    inquiry, we need your consent to contact you.
+                  </p>
+
+                  {/* Checkbox */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      name="consent"
+                      required
+                      className="mt-1 h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor="consent"
+                      className="text-sm text-gray-700 leading-tight"
+                    >
+                      By checking this box, you agree to disclose your personal
+                      information to{" "}
+                      <span className="font-semibold text-gray-900">
+                        Rich System Solution
+                      </span>{" "}
+                      for contacting you via SMS, Email, RCS Messages, Calls and
+                      WhatsApp regarding your inquiry and our services. You may
+                      withdraw your consent at any time.
+                    </label>
+                  </div>
+
+                  {/* Text below checkbox */}
+                  <div className="pt-2 border-t border-gray-200">
+                    <p className="text-xs text-gray-500">
+                      <strong>Note:</strong> Your information is protected and
+                      will only be used for communication purposes related to
+                      your inquiry. We do not share your data with third parties
+                      for marketing purposes. You can review our{" "}
+                      <a
+                        href="/privacy-policy"
+                        className="text-blue-600 hover:text-blue-800 underline font-medium"
+                      >
+                        Privacy Policy
+                      </a>{" "}
+                      for more details.
+                    </p>
+                  </div>
                 </div>
 
                 <button
