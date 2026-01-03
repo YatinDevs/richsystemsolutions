@@ -113,8 +113,8 @@ export default function ContactPageContent({
   return (
     <div className="min-h-screen mt-20 bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50 pt-32 pb-20">
-        <div className="absolute inset-0 bg-grid-blue-100/20 [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      <section className="relative overflow-hidden bg-linear-to-br from-blue-50 via-white to-blue-50 pt-32 pb-20">
+        <div className="absolute inset-0 bg-grid-blue-100/20 [mask-image:linear-linear(180deg,white,rgba(255,255,255,0))]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
@@ -135,8 +135,8 @@ export default function ContactPageContent({
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
             >
-              Let's Build Something
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800 mt-2">
+              Lets Build Something
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-800 mt-2">
                 Amazing Together
               </span>
             </motion.h1>
@@ -147,7 +147,7 @@ export default function ContactPageContent({
               transition={{ delay: 0.2 }}
               className="text-lg text-gray-600"
             >
-              Have a project in mind? Let's discuss how we can help transform
+              Have a project in mind? Lets discuss how we can help transform
               your vision into reality.
             </motion.p>
           </div>
@@ -170,7 +170,7 @@ export default function ContactPageContent({
                   Send us a message
                 </h2>
                 <p className="text-gray-600">
-                  Fill out the form below and we'll get back to you within 24
+                  Fill out the form below and we will get back to you within 24
                   hours.
                 </p>
               </div>
@@ -183,7 +183,7 @@ export default function ContactPageContent({
                     className="p-4 bg-green-50 border border-green-200 rounded-xl flex items-start gap-3"
                   >
                     <CheckCircle
-                      className="text-green-600 mt-0.5 flex-shrink-0"
+                      className="text-green-600 mt-0.5 shrink-0"
                       size={20}
                     />
                     <div>
@@ -191,7 +191,7 @@ export default function ContactPageContent({
                         Message sent successfully!
                       </p>
                       <p className="text-green-700 text-sm mt-1">
-                        We'll contact you shortly.
+                        We will contact you shortly.
                       </p>
                     </div>
                   </motion.div>
@@ -367,7 +367,7 @@ export default function ContactPageContent({
             {/* Contact Info & Map */}
             <div className="space-y-8">
               {/* Contact Details */}
-              <div className="bg-gradient-to-br from-[#07337a] to-[#07337a] rounded-2xl p-8 text-white">
+              <div className="bg-linear-to-br from-[#07337a] to-[#07337a] rounded-2xl p-8 text-white">
                 <h3 className="text-2xl font-bold mb-8">Contact information</h3>
 
                 <div className="space-y-6">
@@ -497,7 +497,7 @@ export default function ContactPageContent({
                     {
                       icon: FaInstagram,
                       color:
-                        "bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]",
+                        "bg-linear-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]",
                       href: contactInfo.social.instagram,
                       label: "Instagram",
                     },
@@ -527,13 +527,13 @@ export default function ContactPageContent({
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-50 to-gray-50">
+      <section className="py-20 bg-linear-to-r from-blue-50 to-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-3xl font-bold text-gray-900 mb-6">
             Ready to start your project?
           </h3>
           <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
-            Let's discuss your requirements and create a solution that drives
+            Lets discuss your requirements and create a solution that drives
             your business forward.
           </p>
 

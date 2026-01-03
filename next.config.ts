@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export", // This is CRITICAL for static export
+  distDir: "out",
+
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -16,7 +20,8 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  trailingSlash: true,
+  trailingSlash: true, // ← IMPORTANT: Set to true for better compatibility
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;

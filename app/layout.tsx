@@ -77,13 +77,13 @@ export const metadata: Metadata = {
     follow: true,
   },
   authors: [{ name: "Rich System Solutions Pvt Ltd" }],
-  themeColor: "#000000",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#0f172a",
 };
 
 export default function RootLayout({

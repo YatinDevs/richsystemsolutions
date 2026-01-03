@@ -1,0 +1,105 @@
+# Robots.txt for https://richsol.com
+# Rich System Solutions Pvt Ltd
+# Generated: 2026-01-03T04:57:41.078Z
+
+# Primary Crawlers
+User-agent: *
+Allow: /
+
+# SEO Crawlers - Special rules
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Crawl-delay: 2
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /dashboard/
+Crawl-delay: 3
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+
+# Social Media Crawlers
+User-agent: FacebookExternalHit
+Allow: /
+Disallow: /admin/
+Crawl-delay: 5
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /admin/
+
+# Aggressive Crawlers - Rate limit
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 15
+
+# Sitemap
+Sitemap: https://richsol.com/sitemap.xml
+
+# Host
+Host: https://richsol.com
+
+# ============ DISALLOWED PATHS ============
+# Administrative areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+
+# API & Backend
+Disallow: /api/
+Disallow: /graphql/
+Disallow: /_next/
+Disallow: /node_modules/
+
+# Search & Filters
+Disallow: /search/
+Disallow: /*?s=
+Disallow: /*&s=
+Disallow: /*?filter=
+Disallow: /*&filter=
+
+# Session & User data
+Disallow: /login/
+Disallow: /logout/
+Disallow: /register/
+Disallow: /reset-password/
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /my-account/
+
+# File types to allow
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$
+Allow: /*.ico$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.eot$
+
+# ============ COMPANY INFO ============
+# Company: Rich System Solutions Pvt Ltd
+# Email: support@richsol.com
+# Phone: +91 95959 02006
+# Address: 4th Floor, Akravi Disha, opposite Hotel City Pride, Tilakwadi, Nashik, Maharashtra 422002

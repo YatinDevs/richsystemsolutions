@@ -2,7 +2,10 @@ import Richlogo from "./rich-logo.png";
 import footerLogo from "./footer-logo.png";
 import trustedClient from "./homeimg/clienttrust.png";
 import quoteImg from "./homeimg/qutoe.png";
-
+import businessImg from "./homeimg/business.png";
+import digitalImg from "./homeimg/digital.png";
+import softwareImg from "./homeimg/software.png";
+// logo images
 import software from "./logo/software.png";
 import business from "./logo/business.png";
 import digital from "./logo/digital.png";
@@ -40,6 +43,9 @@ import howtoguide from "./navbar-img/howtoguide.png";
 import faq from "./navbar-img/faq.png";
 
 export {
+  businessImg,
+  digitalImg,
+  softwareImg,
   Richlogo,
   footerLogo,
   trustedClient,

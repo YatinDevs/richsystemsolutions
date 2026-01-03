@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "next dev",
+    "build": "cross-env NODE_ENV=production tsx scripts/build.ts",
+    "preview": "serve out",
+    "generate-seo": "tsx lib/generate-seo.ts",
+    "clean": "rimraf .next out dist .turbo",
+    "build:dev": "cross-env NODE_ENV=development tsx scripts/build.ts",
+    "test-build": "cross-env NEXT_PUBLIC_SITE_URL=https://richsol.in npm run build",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "build:simple": "next build"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",
@@ -18,12 +24,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.19.27",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
+    "rimraf": "^6.1.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
